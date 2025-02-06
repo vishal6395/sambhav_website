@@ -10,7 +10,9 @@ html {
     --dark: #732C12;
     --light: #FFF4E5;
 }
-
+.logo {
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.7));
+}
 ::-webkit-scrollbar {
     width: 1px;
 }
@@ -137,6 +139,7 @@ header {
 
 .mobile-menu.show {
     display: flex;
+    gap: 2rem;
     max-height: 500px;
     flex-wrap: wrap;
     align-content: center;
@@ -315,10 +318,6 @@ main {
     padding: 1.5rem;
 }
 
-.contact-form:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
 .contact-form h2 {
     text-align: center;
     margin-bottom: 1rem;
@@ -408,11 +407,13 @@ footer {
     margin: 0;
 }
 
+
 .floating-success {
     display: none;
     position: fixed;
     bottom: 20px;
     right: 20px;
+    left: 0;
     background: #4caf50;
     color: #fff;
     padding: 10px 15px;
@@ -628,13 +629,6 @@ header {
     padding-left: 2rem;
 }
 
-.about-header-item::before {
-    content: '▸';
-    position: absolute;
-    left: 1rem;
-    transition: transform 0.3s ease;
-}
-
 .about-item.active .about-header-item::before {
     transform: rotate(90deg);
 }
@@ -788,8 +782,6 @@ footer::before {
     border-radius: 2rem;
     padding: 2rem !important;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    max-height: 80vh;
-    overflow-y: auto;
 }
 
 /* Custom Scrollbar */
@@ -998,6 +990,8 @@ footer::before {
 
 /* Hero Section Styling */
 .hero-section {
+    display: flex;
+    justify-content: center;
     background: linear-gradient(135deg, var(--light) 0%, #fff8f0 100%);
     border-radius: 2rem;
     padding: 3rem 2rem !important;
@@ -1027,8 +1021,7 @@ footer::before {
 }
 
 .hero-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    display: flex;
     gap: 2rem;
     padding: 1rem;
 }
@@ -1079,12 +1072,14 @@ footer::before {
 
 /* Contact Form Styling */
 .contact-section {
+    display: grid;
     background: linear-gradient(135deg, var(--light) 0%, #fff8f0 100%);
     border-radius: 2rem;
     padding: 3rem 2rem !important;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     max-width: 800px;
     margin: 2rem auto;
+    justify-items: center;
 }
 
 .contact-header {
@@ -1144,10 +1139,6 @@ footer::before {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.contact-form button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(236, 109, 56, 0.3);
-}
 
 /* Unified Scrollbar Styling */
 ::-webkit-scrollbar {
@@ -1266,7 +1257,9 @@ header {
     right: -100%;
     width: 280px;
     height: 200vh;
-    background: rgba(255, 255, 255, 0.98);
+    background: white;
+    border-radius: 15px;
+    color: var(--dark);
     backdrop-filter: blur(10px);
     border-radius: 5px 5px;
     padding: 6rem 2rem 2rem;
@@ -1449,6 +1442,92 @@ header {
     background: var(--primary);
 }
 
+/* Academic Programs List */
+[data-theme="dark"] .program-list li {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Facilities and Class Features */
+[data-theme="dark"] .facility-list > div,
+[data-theme="dark"] .class-features > div {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Teacher Profiles */
+[data-theme="dark"] .teacher-profiles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+[data-theme="dark"] .teacher-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    margin: 10px;
+    border-radius: 5px;
+    text-align: center;
+    width: 180px; /* Adjust width as needed */
+}
+
+[data-theme="dark"] .teacher-card i {
+    font-size: 24px;
+    margin-bottom: 5px;
+    color: var(--primary);
+}
+
+[data-theme="dark"] .teacher-card .teacher-name {
+    font-weight: bold;
+    margin: 5px 0;
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .teacher-card .subject {
+    font-size: 14px;
+    color: var(--secondary);
+}
+
+/* Photos Section */
+[data-theme="dark"] .gallery-cta {
+    color: var(--text-color);
+    margin-bottom: 10px;
+    font-size: 16px;
+    text-align: center;
+}
+
+[data-theme="dark"] .gallery-btn {
+    background: var(--primary);
+    color: var(--text-color);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.3s ease;
+}
+
+[data-theme="dark"] .gallery-btn:hover {
+    background: var(--secondary);
+}
+
 /* Hamburger Icon Styling */
 /* Hamburger Icon Styling */
 .hamburger {
@@ -1484,15 +1563,11 @@ header {
     background: var(--text-color);
 }
 
-/* Mobile Menu Background */
-.mobile-menu {
-    background: var(--header-bg);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
+
 
 /* Mobile Menu Links */
 .mobile-menu a {
-    color: var(--text-color);
+    color: var(--dark);
     border-left: 3px solid transparent;
     transition: all 0.3s ease;
 }
@@ -1505,4 +1580,130 @@ header {
 /* Theme-specific Mobile Menu Borders */
 [data-theme="dark"] .mobile-menu a:hover {
     border-left-color: var(--secondary);
+}
+
+/* Academic Programs */
+.program-list {
+    list-style: none;
+    padding: 0;
+}
+.program-list li {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    padding: 12px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+.program-list i {
+    margin-right: 15px;
+    color: #2c3e50;
+    font-size: 1.2em;
+}
+
+/* Facilities */
+.facility-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+.facility-list > div {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 6px;
+}
+.facility-list i {
+    margin-right: 10px;
+    color: #3498db;
+    min-width: 30px;
+}
+
+/* Class Features */
+.class-features {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.class-features > div {
+    text-align: center;
+    padding: 20px;
+    flex: 1;
+    min-width: 200px;
+}
+.class-features i {
+    font-size: 2em;
+    color: #e74c3c;
+    margin-bottom: 10px;
+}
+
+/* Teacher Profiles */
+.teacher-profiles {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 15px 0;
+}
+.teacher-card {
+    text-align: center;
+    min-width: 150px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.teacher-card i {
+    font-size: 1.8em;
+    color: #27ae60;
+    margin-bottom: 10px;
+}
+.teacher-name {
+    display: block;
+    font-weight: 600;
+    margin: 5px 0;
+}
+.subject {
+    font-size: 0.9em;
+    color: #7f8c8d;
+}
+
+/* Photos Section */
+.gallery-cta {
+    font-size: 1.1em;
+    color: #e67e22;
+    text-align: center;
+    margin: 20px 0;
+}
+.gallery-btn {
+    background: #2980b9;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 auto;
+    transition: transform 0.3s ease;
+}
+.gallery-btn:hover {
+    transform: translateY(-2px);
+    background: #3498db;
+}
+.gallery-btn i {
+    font-size: 1.2em;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .facility-list {
+        grid-template-columns: 1fr 1fr;
+    }
+    .teacher-profiles {
+        flex-wrap: nowrap;
+    }
 }

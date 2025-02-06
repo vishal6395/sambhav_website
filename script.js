@@ -55,26 +55,6 @@ function handleSubmit(event) {
 
 document.getElementById('contact-form').addEventListener('submit', handleSubmit);
 
-//// Toggle mobile menu visibility with animation
-//const hamburgerBtn = document.getElementById('hamburgerBtn');
-//const mobileMenu = document.getElementById('mobileMenu');
-
-//function toggleMobileMenu() {
-//    mobileMenu.classList.toggle('show');
-//}
-
-//let hamburger = document.querySelector('.hamburger');
-//hamburger.addEventListener('click', function() {
-//    if (this.style.transform === 'rotate(90deg)') {
-//        this.style.transform = 'rotate(0deg)';
-//   } else {
-//        this.style.transform = 'rotate(90deg)';
-//    }
-//});
-
-
-//hamburgerBtn.addEventListener('click', toggleMobileMenu);
-
 // Accordion functionality for About Section
 document.querySelectorAll('.about-header-item').forEach(header => {
     header.addEventListener('click', () => {
@@ -125,12 +105,6 @@ form.addEventListener("submit", function (e) {
         });
 });
 
-window.addEventListener('scroll', () => {
-    const scrollProgress = document.querySelector('.scroll-progress');
-    const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrolled = (window.scrollY / windowHeight) * 100;
-    scrollProgress.style.width = `${scrolled}%`;
-});
 
 // Back to Top Button
 const backToTop = document.querySelector('.back-to-top');
@@ -150,23 +124,6 @@ backToTop.addEventListener('click', (e) => {
         behavior: 'smooth'
     });
 });
-
-// Mobile Menu Toggle
-//////const hamburger = document.querySelector('.hamburger');
-//const mobileMenu = document.querySelector('.mobile-menu');
-
-//hamburger.addEventListener('click', () => {
-//    hamburger.classList.toggle('active');
-//    mobileMenu.classList.toggle('show');
-//});
-
-// Close mobile menu when clicking outside
-//document.addEventListener('click', (e) => {
-//   if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
-//        hamburger.classList.remove('active');
-//        mobileMenu.classList.remove('show');
-//    }
-//});
 
 // Smooth scroll for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {

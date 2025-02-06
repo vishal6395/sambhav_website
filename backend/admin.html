@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Firebase DB Manager – MongoDB Compass Style</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
@@ -75,7 +76,6 @@
 
     .panel.login-panel h2 {
       text-align: center;
-      margin-bottom: 20px;
       color: #003f63;
     }
 
@@ -172,14 +172,12 @@
 
     /* Webkit-based browsers (Chrome, Edge, Safari) */
     ::-webkit-scrollbar {
-      width: 8px;
+      width: 0.1px;
       /* Adjust width */
     }
 
     ::-webkit-scrollbar-thumb {
       background: rgba(0, 0, 0, 0.2);
-      /* Transparent scrollbar */
-      border-radius: 10px;
     }
 
     ::-webkit-scrollbar-track {
@@ -949,13 +947,17 @@
     .remember-me label::before {
       transition: 0.25s all ease;
     }
+
+    
   </style>
 </head>
 
 <body>
+  
   <!-- Top Bar -->
   <div class="top-bar" id="topBar" style="display: none;">
-    <h1>Firebase DB Manager</h1>
+    
+    
     <!-- Add this toggle button in your navbar -->
     <div class="theme-toggle">
       <button id="themeToggleBtn" class="toggle-btn">
@@ -965,33 +967,57 @@
     </div>
     <button id="logoutBtn">Logout</button>
   </div>
+  
 
   <!-- Main Container -->
   <div class="container">
     <!-- Login Panel -->
     <div class="panel login-panel" id="loginPanel">
-      <h2>Login</h2>
+      <h2 style="font-weight: 800;">Login</h2>
+      <h5 style="font-weight: 400;margin-bottom: 1rem; margin-top: 0 ; align-items: center; text-align: center;">Authenticate Yourself as Admin</h5>
       <form class="login-form" id="loginForm">
         <div class="form-group">
           <label for="email">Email Address</label>
           <input type="email" id="email" placeholder="Enter your email" required />
         </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" placeholder="Enter your password" required />
+        <div class="form-group" style="position: relative; margin-bottom: 20px;">
+          <label for="password" style="display: block; margin-bottom: 5px;">Password</label>
+          <input 
+            type="password" 
+            id="password" 
+            placeholder="Enter your password" 
+            required 
+            style="width: 100%; padding: 10px 40px 10px 10px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;"
+          />
+          <span 
+            class="toggle-password" 
+            onclick="togglePassword()"
+            style="position: absolute; top: 50%; right: 10px; transform: translateY(calc(-50% + 14px)); cursor: pointer; color: #666;"
+          >
+            <i class="fas fa-eye"></i>
+          </span>
         </div>
         <div class="form-group remember-me">
           <input type="checkbox" id="rememberMe" style="width: auto;" />
           <label for="rememberMe">Remember</label>
         </div>
         <button type="submit">Login</button>
+        <button onclick="window.location.href='../index.html'">Back to Home</button>
         <p id="loginError" class="error"></p>
       </form>
     </div>
 
 
     <!-- Database Manager Panel -->
+    
     <div class="panel db-panel" id="adminPanel" style="display: none;">
+      <h1>Firebase DB Manager</h1>
+      <a href="../index.html"
+        style="display: inline-block; margin-bottom:10px; padding: 10px 20px; font-size: 16px; color: white; background-color: #0E803F; border-radius: 10px; text-decoration: none; text-align: center;"
+        onmouseover="this.style.backgroundColor='#13AA52'" onmouseout="this.style.backgroundColor='#0E803F'">
+        Back To Home
+      </a>
+      
       <h2 style="margin-bottom:10px;">Quick Measure</h2>
       <div class="col"
         style="display:flex;flex-direction:flex-start; gap: 1rem; flex-wrap: wrap; justify-content:space-between;">
@@ -1453,6 +1479,22 @@
           theme === 'light' ? 'Dark' : 'Light';
       }
     });
+
+
+    function togglePassword() {
+    const passwordField = document.getElementById("password");
+    const toggleIcon = document.querySelector(".toggle-password i");
+
+    if (passwordField.type === "password") {
+      passwordField.type = "text";
+      toggleIcon.classList.remove("fa-eye");
+      toggleIcon.classList.add("fa-eye-slash");
+    } else {
+      passwordField.type = "password";
+      toggleIcon.classList.remove("fa-eye-slash");
+      toggleIcon.classList.add("fa-eye");
+    }
+  }
   </script>
 </body>
 
