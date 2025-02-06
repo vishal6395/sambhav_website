@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sambhav Foundation - Education Excellence</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .logo {
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.7));
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+
+        <!-- Navbar -->
+        <header>
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="#">
+                        <img src="https://sambhavfoundation.org/wp-content/uploads/2023/10/SMF_LOGO-01.png" class="logo"
+                            alt="Sambhav Foundation Logo" />
+                    </a>
+                </div>
+                <!-- Desktop Navigation Links -->
+                <nav class="nav-links">
+
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                    <!-- Add this button in your navbar (usually in nav-links) -->
+                    <button id="theme-toggle" class="theme-toggler" aria-label="Toggle theme"><span
+                            class="theme-icon">🌙</span></button>
+                    <button onclick="window.location.href='backend/admin.html'">Admin</button>
+                </nav>
+                <!-- Hamburger Button for Mobile -->
+                <button class="hamburger" onclick="this.classList.toggle('rotated')" id="hamburgerBtn"><i
+                        class="fas fa-bars"></i></button>
+            </div>
+            <!-- Mobile Navigation Menu -->
+            <nav class="mobile-menu" id="mobileMenu">
+
+                <a href="#about" onclick="toggleMobileMenu()">About</a>
+                <a href="#contact" onclick="toggleMobileMenu()">Contact</a>
+
+                <!-- Add this button in your navbar (usually in nav-links) -->
+                <button class="theme-toggler theme-icon" aria-label="Toggle theme">
+                    <span class="theme-icon">🌙</span>
+                </button>
+                <button onclick="window.location.href='backend/admin.html'; toggleMobileMenu()">Admin</button>
+            </nav>
+        </header>
+        <main>
+            <!-- Hero Section -->
+            <div id="hero" class="section hero-section">
+                <div class="hero-container">
+                    <div class="hero-box ev"><span>EV</span></div>
+                    <div class="hero-box ada"><span>ADA</span></div>
+                    <div class="hero-box crm"><span>CRM</span></div>
+                </div>
+            </div>
+
+            <!-- About Section -->
+            <div id="about" class="section about-section">
+                <div class="about-header">About Our Programs</div>
+                <div class="about-container">
+                    <!-- Academic Programs -->
+                    <div class="about-item">
+                        <div class="about-header-item">
+                            <span>Academic Programs</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="about-content">
+                            <p>Discover a wide range of academic programs designed to empower future leaders in various
+                                fields.</p>
+                        </div>
+                    </div>
+                    <!-- Facilities -->
+                    <div class="about-item">
+                        <div class="about-header-item">
+                            <span>Facilities</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="about-content">
+                            <p>Our state-of-the-art facilities create the ideal environment for learning and innovation.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Class -->
+                    <div class="about-item">
+                        <div class="about-header-item">
+                            <span>Class</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="about-content">
+                            <p>Modern classrooms equipped with cutting-edge technology to enhance your learning
+                                experience.</p>
+                            <div class="class-images">
+                                <img src="https://sambhavfoundation.org/wp-content/uploads/2021/07/Group-6-1.png"
+                                    alt="Classroom 1">
+                                <img src="https://sambhavfoundation.org/wp-content/uploads/2021/07/Group-1-1.png"
+                                    alt="Classroom 2">
+                                <img src="https://sambhavfoundation.org/wp-content/uploads/2021/07/Group-5-1.png"
+                                    alt="Classroom 3">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Teacher -->
+                    <div class="about-item">
+                        <div class="about-header-item" display">
+                            <span>Teacher</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="about-content">
+                            <p>Learn from <span class="highlight-text">Dr. John Smith</span>, an expert in <span
+                                    class="highlight-text">Physics</span>, who is passionate about teaching and
+                                mentoring.</p>
+                            <div class="teacher-images" style="display:flex;flex-direction:row;overflow: scroll;">
+                                <img src="https://sambhavfoundation.org/wp-content/uploads/2021/07/Group-2-1.png"
+                                    alt="Teacher 1">
+                                <img src="https://sambhavfoundation.org/wp-content/uploads/2021/07/Group-3-1.png"
+                                    alt="Teacher 2">
+                                <img src="https://sambhavfoundation.org/wp-content/uploads/2021/07/Group-4-1.png"
+                                    alt="Teacher 3">
+                                <img src="https://sambhavfoundation.org/wp-content/uploads/2021/07/Group-2-1.png"
+                                    alt="Teacher 1">
+                                <img src="https://sambhavfoundation.org/wp-content/uploads/2021/07/Group-3-1.png"
+                                    alt="Teacher 2">
+                                <img src="https://sambhavfoundation.org/wp-content/uploads/2021/07/Group-4-1.png"
+                                    alt="Teacher 3">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Photos -->
+                    <div class="about-item">
+                        <div class="about-header-item">
+                            <span>Photos</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="about-content">
+                            <p>Explore our vibrant campus life through a collection of photos.</p>
+                            <button onclick="window.location.href='gallery/index.html'">View Photos</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Section -->
+            <div id="contact" class="section contact-section">
+                <div class="contact-form main">
+                    <h2>Contact Us</h2>
+                    <form id="contact-form" action="https://api.web3forms.com/submit" method="post"
+                        onsubmit=handleSubmit(event)>
+                        <!-- Web3Forms API Key -->
+                        <input type="hidden" name="apikey" value="9e896f58-4d02-495e-8d11-b06ca5d85762" />
+
+                        <!-- Form Fields -->
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your Name" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="Your Email" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="3" placeholder="Your Message"
+                                required></textarea>
+                        </div>
+
+                        <button type="submit">Send Message</button>
+
+                        <!-- Floating Success Message -->
+                        <span id="success-msg" class="floating-success">
+                            Sent
+                        </span>
+                    </form>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-links">
+                <div class="row add">
+                    <h2>Address</h2>
+                    <li>
+                        <i class="fa-solid fa-location-dot"></i><span style="margin-left: 6px;">Basai Chowk,
+                            Gurgaon</span>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-envelope"></i><span
+                            style="margin-left: 6px;">manjeet.singh@sambhav.org</span>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-phone"></i><span style="margin-left: 6px;">+91-9875421630</span>
+                    </li>
+                </div>
+                <div class="row iconsss">
+                    <a href="#" target="_blank" title="WhatsApp"><img
+                            src="https://res.cloudinary.com/ds6um53cx/image/upload/v1738685777/ggmogfd4jhnbjzzru3jh.png"
+                            style="width: 30px; height: 30px;"></a>
+                    <a href="https://instagram.com/yourprofile" target="_blank" title="Instagram"><img
+                            src="https://res.cloudinary.com/ds6um53cx/image/upload/v1738685932/itkrsyqodddglsjwcnef.png"
+                            style="width: 30px; height: 30px;"></a>
+                    <a href="gallery/index.html" title="Photos"><img width="48" height="48"
+                            src="https://img.icons8.com/color/48/gallery.png" style="width: 30px; height: 30px;"
+                            alt="gallery" /></a>
+                    <a href="backend/admin.html" title="Admin"><img
+                            src="https://img.icons8.com/color/48/admin-settings-male.png"
+                            style="width: 30px; height: 30px; "></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Made with ❤️ by Us</p>
+            </div>
+
+        </footer>
+    </div>
+
+    <button class="back-to-top" aria-label="Back to top">↑</button>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"></script>
+    <script type="module" src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Send to Database</title>
+  <link rel="icon" href="https://img.icons8.com/color/48/firebase.png" type="image/png">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1><i class="fas fa-fire" style="color: #FFA000; font-size: 29px;"></i> Firebase</h1>
+
+    <!-- Input for Cloudinary Image URL -->
+    <input type="url" id="imageURL" placeholder="Image URL" />
+    
+    <!-- Input for Image Title -->
+    <input type="text" id="imageTitle" placeholder="Image Title" />
+
+    <!-- Dropdown for selecting categories -->
+    <div class="input-row">
+        <select id="categorySelect" style="color: #757575; margin: 5px 0 10px 0;">
+          <option value="ADA">Assistant Data Analytics</option>
+          <option value="EV">Electric Vehicle</option>
+          <option value="CRM">Customer Relationship Management</option>
+        </select>
+        <button class="upload-btn" onclick="saveImageURL()">
+          Send
+          <i class="fas fa-paper-plane btn-icon"></i>
+        </button>
+      </div>
+      <div class="status" id="status"></div>
+    </div>
+        
+    
+  </div>
+
+  <!-- Firebase SDK -->
+  <script type="module" src="script.js"></script>
+</body>
+</html>
