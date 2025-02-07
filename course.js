@@ -23,6 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('excelTipsBtn').addEventListener('click', showExcelTips);
     document.getElementById('biExamplesBtn').addEventListener('click', showBIExamples);
     document.getElementById('careerPathsBtn').addEventListener('click', showCareerPaths);
+    document.getElementById('chargingMapBtn').addEventListener('click', showChargingMap);
+    document.getElementById('batteryTechBtn').addEventListener('click', showBatteryTech);
+    ocument.getElementById('careerBtn').addEventListener('click', showCareer);
 
     // Modal button
     document.getElementById('interestBtn').addEventListener('click', openModal);
@@ -137,6 +140,28 @@ function showCareerPaths() {
         1. Junior Analyst → Senior Analyst<br>
         2. Data Analyst → Data Scientist<br>
         3. Business Intelligence Specialist`);
+}
+function showChargingMap() {
+    showAlert(`<strong>EV Charging Stations Map:</strong><br>
+        1. Locate nearby charging stations<br>
+        2. Compare charging speeds and availability<br>
+        3. Plan optimal routes for your EV journey`);
+}
+
+// Function to display Battery Technology insights
+function showBatteryTech() {
+    showAlert(`<strong>Battery Technology Updates:</strong><br>
+        1. Latest innovations in battery design<br>
+        2. Improvements in energy density<br>
+        3. Emerging trends in battery efficiency`);
+}
+
+// Function to display Career Opportunities information
+function showCareer() {
+    showAlert(`<strong>Career Opportunities in the EV Industry:</strong><br>
+        1. Electrical Engineering roles<br>
+        2. Research and Development positions<br>
+        3. Sales and Technical Support careers`);
 }
 
 // Window click handler
