@@ -150,11 +150,16 @@ header {
 
 /* Section wrappers */
 .section {
-    padding: 2rem;
+    padding: 7rem;
     margin-bottom: 1.5rem;
     border-radius: 5px;
     border-top: 5px solid var(--primary);
     border-radius: 2rem;
+}
+@media (max-width: 768px) { /* Adjust for tablets & mobile screens */
+    .section {
+        padding: 2rem;
+    }
 }
 
 .about-section {
@@ -1755,6 +1760,7 @@ header {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
+    margin: 1.5rem auto;
     margin-bottom: 2rem;
 }
 
