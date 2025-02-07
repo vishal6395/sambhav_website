@@ -17,6 +17,12 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
+document.getElementById("phone").addEventListener("input", function (e) {
+    let value = e.target.value.replace(/\D/g, ""); 
+    if (value.length > 10) value = value.slice(0, 10); 
+    e.target.value = value; 
+});
+
 // Handle form submit to Firebase and Web3Form
 function handleSubmit(event) {
     event.preventDefault();
@@ -25,6 +31,7 @@ function handleSubmit(event) {
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const message = document.getElementById('message').value;
+    const phone = document.getElementById('phone').value;
 
     // Create a new reference for the data under 'messages' in Firebase Realtime Database
     const messagesRef = ref(database, 'messages');
@@ -35,6 +42,7 @@ function handleSubmit(event) {
         name: name,
         email: email,
         message: message,
+        phone: phone,
         timestamp: new Date().toISOString()
     }).then(() => {
         // Handle successful push
