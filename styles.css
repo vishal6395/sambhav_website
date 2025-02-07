@@ -153,6 +153,8 @@ header {
     padding: 2rem;
     margin-bottom: 1.5rem;
     border-radius: 5px;
+    border-top: 5px solid var(--primary);
+    border-radius: 2rem;
 }
 
 .about-section {
@@ -1379,7 +1381,8 @@ header {
 
 [data-theme="dark"] .nav-links a,
 [data-theme="dark"] .mobile-menu a {
-    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-color);
+    background: transparent;
 }
 
 [data-theme="dark"] .section,
@@ -1546,8 +1549,16 @@ header {
     border-color: var(--secondary);
     background: rgba(0, 0, 0, 0.1);
 }
-
-/* Animated Hamburger Lines */
+[data-theme="dark"] .sponsors-title, .card-content p, .timeline-item p{
+    color: var(--text-color);
+}
+.sponsor-card {
+    background-color: white;
+    transition: background-color 0.3s ease;
+}
+[data-theme="dark"] .sponsor-card {
+    background-color: transparent;
+}
 .hamburger span {
     display: block;
     width: 24px;
@@ -1707,10 +1718,7 @@ header {
         flex-wrap: nowrap;
     }
 }
-/* Sponsors Section - Theme Integrated */
-.sponsors-container {
 
-}
 
 .section-header {
     text-align: center;
@@ -1733,7 +1741,6 @@ header {
 
 .sponsor-logo {
     height: 50px;
-    filter: brightness(0) saturate(100%) invert(36%) sepia(49%) saturate(1294%) hue-rotate(345deg) brightness(89%) contrast(92%);
 }
 
 .partner-badge {
@@ -1752,7 +1759,6 @@ header {
 }
 
 .sponsor-card {
-    background: white;
     border-radius: 20px;
     padding: 1.5rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -1860,7 +1866,6 @@ header {
 }
 .sponsor-logo {
     height: 50px;
-    filter: grayscale(100%) brightness(0%) invert(75%) sepia(51%) saturate(478%) hue-rotate(325deg);
 }
 
 .expandable .card-content {
