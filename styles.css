@@ -231,14 +231,23 @@ header {
 /* Background images for hero boxes (replace URLs as needed) */
 .hero-box.ev {
     background-image: url('https://sambhavfoundation.org/wp-content/uploads/2021/07/Group-6-1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .hero-box.ada {
     background-image: url('https://sambhavfoundation.org/wp-content/uploads/2021/07/Group-5-1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .hero-box.crm {
     background-image: url('https://sambhavfoundation.org/wp-content/uploads/2021/07/Group-1-1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 /* About Section */
@@ -1031,6 +1040,7 @@ footer::before {
     display: flex;
     gap: 2rem;
     padding: 1rem;
+    margin-bottom: 2rem;
 }
 
 .hero-box {
