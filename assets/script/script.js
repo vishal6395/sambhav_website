@@ -17,11 +17,33 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
-document.getElementById("phone").addEventListener("input", function (e) {
-    let value = e.target.value.replace(/\D/g, ""); 
-    if (value.length > 10) value = value.slice(0, 10); 
-    e.target.value = value; 
+const phoneInput = document.getElementById("phone");
+
+phoneInput.addEventListener("input", function (e) {
+    let value = e.target.value;
+
+    // Ensure "+91 " is always at the beginning
+    if (!value.startsWith("+91 ")) {
+        value = "+91 " + value.replace(/\D/g, ""); // Remove non-numeric characters
+    } else {
+        value = "+91 " + value.slice(4).replace(/\D/g, ""); // Keep only numbers after +91
+    }
+
+    // Limit to exactly 10 digits (excluding "+91 ")
+    let digitsOnly = value.slice(4).replace(/\D/g, ""); // Remove non-digits after "+91 "
+    if (digitsOnly.length > 10) {
+        digitsOnly = digitsOnly.slice(0, 10);
+    }
+
+    e.target.value = "+91 " + digitsOnly;
 });
+
+phoneInput.addEventListener("keydown", function (e) {
+    if (e.key === "Backspace" && phoneInput.value.length <= 4) {
+        e.preventDefault(); // Prevent deletion of "+91 "
+    }
+});
+
 
 // Handle form submit to Firebase and Web3Form
 function handleSubmit(event) {
