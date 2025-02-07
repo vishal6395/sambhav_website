@@ -678,6 +678,14 @@
 .theme-switcher:active {
   transform: scale(0.95);
 }
+.empty {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
 
 .theme-icon {
   width: var(--icon-size);
@@ -699,8 +707,10 @@
   </header>
 
   <div class="container">
-    <h1>Assistant Data Analyst: A Pathway to Success</h1>
-    <a href="index.html" class="nav-home">Home</a>
+    <div class="empty">
+      <h1>Assistant Data Analyst: A Pathway to Success</h1>
+      <a href="index.html" class="nav-home">Home</a>
+    </div>
     
     <div class="content-container">
       <!-- Content Block 1 -->
