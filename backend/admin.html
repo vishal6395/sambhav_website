@@ -1116,10 +1116,9 @@
 
           messageNodes.push({
             message: data.message || 'N/A',
-            // Use data.name as the sender; if not available, fallback to data.email
             name: data.name || data.email || 'N/A',
+            phone: data.phone || data.phone || 'N/A',
             timestamp: data.timestamp || 'N/A',
-            // If "state" doesn't exist in your data, it will default to 'N/A'
             email: data.email || 'N/A'
           });
         });
