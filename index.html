@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sambhav Foundation - Education Excellence</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="app-container">
+
+        <!-- Navbar -->
+        <header>
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="#">
+                        <img src="https://sambhavfoundation.org/wp-content/uploads/2023/10/SMF_LOGO-01.png" class="logo"
+                            alt="Sambhav Foundation Logo" />
+                    </a>
+                </div>
+                <!-- Desktop Navigation Links -->
+                <nav class="nav-links">
+
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                    <!-- Add this button in your navbar (usually in nav-links) -->
+                    <button id="theme-toggle" class="theme-toggler" aria-label="Toggle theme"><span
+                            class="theme-icon">🌙</span></button>
+                    <button onclick="window.location.href='backend/admin.html'">Admin</button>
+                </nav>
+                <!-- Hamburger Button for Mobile -->
+                <button class="hamburger" onclick="this.classList.toggle('rotated')" id="hamburgerBtn"><i
+                        class="fas fa-bars"></i></button>
+            </div>
+            <!-- Mobile Navigation Menu -->
+            <nav class="mobile-menu" id="mobileMenu">
+
+                <a href="#about" onclick="toggleMobileMenu()">About</a>
+                <a href="#contact" onclick="toggleMobileMenu()">Contact</a>
+
+                <!-- Add this button in your navbar (usually in nav-links) -->
+                <button class="theme-toggler theme-icon" aria-label="Toggle theme">
+                    <span class="theme-icon">🌙</span>
+                </button>
+                <button onclick="window.location.href='backend/admin.html'; toggleMobileMenu()">Admin</button>
+            </nav>
+        </header>
+        <main>
+            <!-- Hero Section -->
+            <div class="hero-container">
+                <a href="#" class="hero-box ev" style="text-decoration: none; color: inherit;">
+                    <div class="hero-box ev">
+                        <span>EVST</span>
+                    </div>
+                </a>
+                <a href="dataAnalyst.html" class="hero-box ada"
+                    style="text-decoration: none; color: inherit;">
+                    <div class="hero-box ada">
+                        <span>ADA</span>
+                    </div>
+                </a>
+                <a href="#" class="hero-box crm" style="text-decoration: none; color: inherit;">
+                    <div class="hero-box crm">
+                        <span>CRM</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- About Section -->
+            <div id="about" class="section about-section">
+                <div class="about-header">About Our Programs</div>
+                <div class="about-container">
+                    <!-- Academic Programs -->
+                    <div class="about-item">
+                        <div class="about-header-item">
+                            <span>Academic Programs</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="about-content">
+                            <ul class="program-list">
+                                <li><i class="fas fa-book"></i><span>EVST (Electric Vehicle Service Technician)</span>
+                                </li>
+                                <li><i class="fas fa-chart-line"></i><span>ADA (Assistance Data Analytics)</span></li>
+                                <li><i class="fas fa-users"></i><span>CRM (Customer Relationship Management)</span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Facilities -->
+                    <div class="about-item">
+                        <div class="about-header-item">
+                            <span>Facilities</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="about-content">
+                            <div class="facility-list" style="overflow:scroll;">
+                                <div><i class="fas fa-toilet"></i><span>Clean & Hygienic Toilets</span></div>
+                                <div><i class="fas fa-briefcase"></i><span>Job Placement Support</span></div>
+                                <div><i class="fas fa-laptop"></i><span>Advanced Computer Labs</span></div>
+                                <div><i class="fas fa-snowflake"></i><span>Fully AC Classes</span></div>
+                                <div><i class="fas fa-wifi"></i><span>High-speed Internet</span></div>
+                                <div><i class="fas fa-chalkboard-teacher"></i><span>Trained Faculty</span></div>
+                                <div><i class="fas fa-leaf"></i><span>Green Study Environment</span></div>
+                                <div><i class="fas fa-building"></i><span>Neat Infrastructure</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Class -->
+                    <div class="about-item">
+                        <div class="about-header-item">
+                            <span>Class</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="about-content">
+                            <div class="class-features">
+                                <div><i class="fas fa-users"></i><span>Soft Skills Development</span></div>
+                                <div><i class="fas fa-tools"></i><span>Practical Problem Solving</span></div>
+                                <div><i class="fas fa-desktop"></i><span>Dedicated Digital Classrooms</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Teacher -->
+                    <div class="about-item">
+                        <div class="about-header-item">
+                            <span>Teacher</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="about-content">
+                            <div class="teacher-profiles">
+                                <div class="teacher-card">
+                                    <i class="fas fa-chalkboard-teacher"></i>
+                                    <span class="teacher-name">Vishal Saxena</span>
+                                    <span class="subject">ADA Expert</span>
+                                </div>
+                                <div class="teacher-card">
+                                    <i class="fas fa-car"></i>
+                                    <span class="teacher-name">Md Aman Ansari</span>
+                                    <span class="subject">EVST Specialist</span>
+                                </div>
+                                <div class="teacher-card">
+                                    <i class="fas fa-handshake"></i>
+                                    <span class="teacher-name">Vikas Chand</span>
+                                    <span class="subject">CRM Head</span>
+                                </div>
+                                <div class="teacher-card">
+                                    <i class="fas fa-user-tie"></i>
+                                    <span class="teacher-name">Mrs. Bhawna Singh</span>
+                                    <span class="subject">Manager</span>
+                                </div>
+                                <div class="teacher-card">
+                                    <i class="fas fa-database"></i>
+                                    <span class="teacher-name">Manjeet Singh</span>
+                                    <span class="subject">MIS Executive</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Photos -->
+                    <div class="about-item">
+                        <div class="about-header-item">
+                            <span>Photos</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="about-content">
+                            <p class="gallery-cta">Discover our world through 1000+ moments captured in time! 🎓</p>
+                            <button class="gallery-btn" onclick="window.location.href='gallery/index.html'">
+                                <i class="fas fa-camera-retro"></i>
+                                Explore Our Campus Gallery
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <!-- Sponsors Section -->
+<div id="sponsors" class="section">
+    <div class="sponsors-container">
+        <div class="section-header">
+            <h2 class="sponsors-title">Strategic Partnership</h2>
+            <div class="sponsor-branding">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/HDFC_Bank_Logo.svg/2560px-HDFC_Bank_Logo.svg.png" 
+                     alt="HDFC Bank Logo" 
+                     class="sponsor-logo">
+                <span class="partner-badge">Banking Partner</span>
+            </div>
+        </div>
+
+        <div class="sponsor-grid">
+            <div class="sponsor-card">
+                <div class="card-header">
+                    <i class="fas fa-handshake"></i>
+                    <h3>Collaboration</h3>
+                </div>
+                <div class="card-content">
+                    <p>Empowering vocational education through HDFC Bank's CSR initiatives</p>
+                    <span class="highlight-text">₹2.8Cr Funded</span>
+                </div>
+            </div>
+
+            <div class="sponsor-card">
+                <div class="card-header">
+                    <i class="fas fa-users"></i>
+                    <h3>Impact</h3>
+                </div>
+                <div class="card-content">
+                    <p>1200+ students trained through HDFC supported programs</p>
+                    <span class="highlight-text">85% Placement Rate</span>
+                </div>
+            </div>
+
+            <div class="sponsor-card expandable">
+                <div class="card-header expand-trigger">
+                    <i class="fas fa-history"></i>
+                    <h3>Journey</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="card-content expand-content">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <span class="timeline-year">2022</span>
+                            <p>Partnership Initiated</p>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="timeline-year">2023</span>
+                            <p>Digital Infrastructure Upgrade</p>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="timeline-year">2024</span>
+                            <p>Program Expansion Phase</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sponsor-cta">
+            <a href="https://www.hdfcbank.com/csr" class="cta-button" target="_blank">
+                Explore CSR Initiatives
+                <i class="fas fa-external-link-alt"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+            <!-- Contact Section -->
+            <div id="contact" class="section contact-section">
+                <div class="contact-form main">
+                    <h2>Contact Us</h2>
+                    <form id="contact-form" action="https://api.web3forms.com/submit" method="post"
+                        onsubmit=handleSubmit(event)>
+                        <!-- Web3Forms API Key -->
+                        <input type="hidden" name="apikey" value="9e896f58-4d02-495e-8d11-b06ca5d85762" />
+
+                        <!-- Form Fields -->
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your Name" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="Your Email" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="3" placeholder="Your Message"
+                                required></textarea>
+                        </div>
+
+                        <button type="submit">Send Message</button>
+
+                        <!-- Floating Success Message -->
+                        <span id="success-msg" class="floating-success">
+                            Sent
+                        </span>
+                    </form>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-links">
+                <div class="row add">
+                    <h2>Address</h2>
+                    <li>
+                        <i class="fa-solid fa-location-dot"></i><span style="margin-left: 6px;">Kataria Tower, Main
+                            Basai Road</span>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-location-dot"></i><span style="margin-left: 6px;">Gurgaon, Haryana -
+                            122001</span>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-envelope"></i><span
+                            style="margin-left: 6px;">manjeet.singh@sambhav.org</span>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-phone"></i><span style="margin-left: 6px;">+91-9875421630</span>
+                    </li>
+                </div>
+                <div class="row iconsss">
+                    <a href="https://wa.me/916395812303" target="_blank" title="WhatsApp"><img
+                            src="https://res.cloudinary.com/ds6um53cx/image/upload/v1738685932/itkrsyqodddglsjwcnef.png"
+                            style="width: 30px; height: 30px;"></a>
+                    <a href="https://instagram.com/pankajshah.1" target="_blank" title="Instagram"><img
+                            src="https://res.cloudinary.com/ds6um53cx/image/upload/v1738685777/ggmogfd4jhnbjzzru3jh.png"
+                            style="width: 30px; height: 30px;"></a>
+                    <a href="gallery/index.html" title="Photos"><img width="48" height="48"
+                            src="https://img.icons8.com/color/48/gallery.png" style="width: 30px; height: 30px;"
+                            alt="gallery" /></a>
+                    <a href="backend/admin.html" title="Admin"><img
+                            src="https://img.icons8.com/color/48/admin-settings-male.png"
+                            style="width: 30px; height: 30px; "></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Made with ❤️ by Vishal Saxena, Manjeet Singh, Pankaj Shah </p>
+            </div>
+
+        </footer>
+    </div>
+
+    <button class="back-to-top" aria-label="Back to top">↑</button>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"></script>
+    <script type="module" src="script.js"></script>
+</body>
+
+</html>

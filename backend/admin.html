@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Firebase DB Manager – MongoDB Compass Style</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --mongodb-green: #13AA52;
+  --green-hover: #0E803F;
+  --background: #F8F9FA;
+  --panel-bg: #FFFFFF;
+  --header-bg: #FFFFFF;
+  --border-color: #E9ECEF;
+  --text-primary: #2D2D2D;
+  --text-secondary: #5F6368;
+  --table-header: #F8F9FA;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--background);
+  color: var(--text-primary);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.top-bar {
+  background: var(--header-bg);
+  color: var(--text-primary);
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.top-bar h1 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--mongodb-green);
+}
+
+button {
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button:hover {
+  box-shadow: 0 2px 6px rgba(19, 170, 82, 0.2);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 10px;
+}
+
+.panel {
+  background: var(--panel-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  animation: smoothEntry 0.3s ease-out;
+}
+
+.login-panel {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 30px;
+}
+
+.db-panel {
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.login-form .form-group {
+  margin-bottom: 15px;
+}
+
+.login-form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background: var(--panel-bg);
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+}
+
+.login-form input:focus {
+  border-color: var(--mongodb-green);
+  box-shadow: 0 0 0 3px rgba(19, 170, 82, 0.1);
+}
+
+.controls {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.node-card {
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  background: var(--panel-bg);
+  transition: all 0.2s ease;
+}
+
+.node-header {
+  background: var(--table-header);
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  gap: 10px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.node-title {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--text-primary);
+  flex: 1;
+  min-width: 0;
+}
+
+.node-body {
+  padding: 10px 15px;
+  border-top: 1px solid var(--border-color);
+  display: none;
+}
+
+.db-table, #messageTable, #registrationTable {
+  width: 100%;
+  border-collapse: collapse;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  margin: 1rem 0;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 0 0 2px var(--border-color);
+}
+
+.db-table th, #messageTable th, #registrationTable th {
+  background: var(--table-header);
+  color: var(--text-primary);
+  font-weight: 600;
+  padding: 12px;
+  border-bottom: 2px solid var(--border-color);
+  text-align: center;
+}
+
+.db-table td, #messageTable td, #registrationTable td {
+  background: var(--panel-bg);
+  color: var(--text-primary);
+  padding: 10px;
+  border-color: var(--border-color);
+  text-align: center;
+  vertical-align: middle;
+  word-wrap: break-word;
+}
+
+.db-table tr:hover, #messageTable tr:hover, #registrationTable tr:hover {
+  background: rgba(19, 170, 82, 0.03);
+}
+
+.delete-btn {
+  background: #DC3545;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-size: 0.9rem;
+}
+
+.delete-btn:hover {
+  background: #BB2D3B;
+}
+
+@media (max-width: 768px) {
+  .top-bar, .login-panel {
+    padding: 10px;
+  }
+
+  .top-bar h1 {
+    font-size: 18px;
+  }
+
+  .container {
+    margin: 10px;
+  }
+
+  .node-title {
+    font-size: 14px;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 0.1px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@keyframes smoothEntry {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Previous optimized code remains the same until tables section */
+.toggle-btn {
+  background-color: #47A248; /* MongoDB Green */
+  color: #FFFFFF;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.toggle-btn:hover {
+  background-color: #3E8E41; /* Slightly darker green on hover */
+}
+
+.primary {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  background-color: #0E803F; /* Top primary color */
+  border-radius: 10px;
+  text-decoration: none;
+  text-align: center;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.primary:hover,
+.primary:focus {
+  background-color: #0C7038; /* Slightly darker shade for hover/focus */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Table Structure Adjustments */
+.db-table, #messageTable, #registrationTable {
+  width: auto;
+  min-width: 100%;
+  border: 2px solid var(--border-color);
+}
+
+.db-table th, 
+.db-table td,
+#messageTable th,
+#messageTable td,
+#registrationTable th,
+#registrationTable td {
+  white-space: nowrap;
+  border: 1px solid var(--border-color);
+}
+
+/* Inner table borders enhancement */
+.db-table td:not(:last-child),
+.db-table th:not(:last-child),
+#messageTable td:not(:last-child),
+#messageTable th:not(:last-child) {
+  border-right: 2px solid var(--border-color);
+}
+
+.db-table tr:not(:last-child) td,
+#messageTable tr:not(:last-child) td {
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* DB Table Input Fields */
+.db-table .input-field {
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  font: inherit;
+  color: currentColor;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.db-table .input-field:focus {
+  outline: none;
+  box-shadow: 0 2px 0 var(--mongodb-green);
+}
+
+/* Specific Delete Button Color */
+.node-delete-btn {
+  background: #DC3545 !important;
+  padding: 6px 10px;
+}
+
+.node-delete-btn:hover {
+  background: #BB2D3B !important;
+}
+
+/* Table Container Overflow */
+#dbEasy {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+/* DB Table Input Fields Styling */
+.db-table .input-field {
+  width: 20ch !important;
+  min-width: 20ch;
+  max-width: 20ch;
+  overflow-x: auto;
+  white-space: nowrap;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 4px;
+  padding: 6px 8px !important;
+  background: var(--panel-bg);
+  display: inline-block;
+  vertical-align: middle;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  transition: all 0.2s ease;
+}
+
+.db-table .input-field:focus {
+  border-color: var(--mongodb-green) !important;
+  box-shadow: 0 0 0 2px rgba(19, 170, 82, 0.1);
+  outline: none;
+}
+
+/* Ensure inputs stay in single row */
+.db-table .editable {
+  display: flex;
+  gap: 8px;
+  white-space: nowrap;
+}
+.form-group.remember-me input[type="checkbox"] {
+    visibility: hidden;
+    display: none;
+  }
+
+  .form-group.remember-me label {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    line-height: 1;
+  }
+
+  .form-group.remember-me *,
+  .form-group.remember-me ::after,
+  .form-group.remember-me ::before {
+    box-sizing: border-box;
+  }
+
+  .form-group.remember-me .item .cbx {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-right: 6px;
+    border: 1px solid #c8ccd4;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  .form-group.remember-me .item .cbx svg {
+    position: relative;
+    top: -1px;
+    transform: scale(0);
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .form-group.remember-me .item .cbx svg polyline {
+    stroke-width: 2;
+    stroke: #18cda6;
+  }
+  .form-group.remember-me .item .cbx:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -10px 0 0 -10px;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    background: #18cda6;
+    transform: scale(0);
+  }
+  .form-group.remember-me .item .cbx:after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 2px;
+    height: 2px;
+    border-radius: 2px;
+    box-shadow: 0 -18px 0 #18cda6, 12px -12px 0 #18cda6, 18px 0 0 #18cda6, 12px 12px 0 #18cda6, 0 18px 0 #18cda6, -12px 12px 0 #18cda6, -18px 0 0 #18cda6, -12px -12px 0 #18cda6;
+    transform: scale(0);
+  }
+  .form-group.remember-me .item .cbx-lbl {
+    position: relative;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  .form-group.remember-me .item .cbx-lbl:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #9098a9;
+  }
+  .form-group.remember-me .item input {
+    display: none;
+  }
+  .form-group.remember-me .item input:checked + .cbx {
+    border-color: transparent;
+  }
+  .form-group.remember-me .item input:checked + .cbx svg {
+    transform: scale(1);
+    transition: all 0.4s ease;
+    transition-delay: 0.1s;
+  }
+  .form-group.remember-me .item input:checked + .cbx:before {
+    transform: scale(1);
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+  .form-group.remember-me .item input:checked + .cbx:after {
+    transform: scale(1);
+    opacity: 0;
+    transition: all 0.6s ease;
+  }
+  .form-group.remember-me .item input:checked ~ .cbx-lbl {
+    color: #9098a9;
+  }
+  .form-group.remember-me .item input:checked ~ .cbx-lbl:after {
+    width: 100%;
+    transition: all 0.4s ease;
+  }
+  /* Add these rules */
+.form-group.remember-me .item {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  cursor: pointer;
+}
+
+.form-group.remember-me .cbx {
+  flex-shrink: 0; /* Prevent checkbox from shrinking */
+}
+
+.toggle-btn.second {
+  background-color: #333333; /* deep navy blue */
+  border: 2px solid #333333;
+}
+
+.toggle-btn.second:hover {
+  background-color: #222222; /* even deeper navy blue on hover */
+}
+.nav-logo img {
+    height: 50px;
+}
+.nav-logo img {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    transition: transform 0.3s var(--ease-in-out-quad);
+}
+
+/* From Uiverse.io by vinodjangid07 */ 
+.Btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition-duration: .3s;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+  background-color: rgb(255, 65, 65);
+}
+
+/* plus sign */
+.sign {
+  width: 100%;
+  transition-duration: .3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sign svg {
+  width: 17px;
+}
+
+.sign svg path {
+  fill: white;
+}
+/* text */
+.text {
+  position: absolute;
+  right: 0%;
+  width: 0%;
+  opacity: 0;
+  color: white;
+  font-size: 1.2em;
+  font-weight: 600;
+  transition-duration: .3s;
+}
+/* hover effect on button width */
+.Btn:hover {
+  width: 125px;
+  border-radius: 40px;
+  transition-duration: .3s;
+}
+
+.Btn:hover .sign {
+  width: 30%;
+  transition-duration: .3s;
+  padding-left: 20px;
+}
+/* hover effect button's text */
+.Btn:hover .text {
+  opacity: 1;
+  width: 70%;
+  transition-duration: .3s;
+  padding-right: 10px;
+}
+/* button click effect*/
+.Btn:active {
+  transform: translate(2px ,2px);
+}
+
+[data-theme="dark"] {
+  --mongodb-green: #13AA52;
+  --green-hover: #10C060;
+  --background: #001E2B;
+  --panel-bg: #0A3D5A;
+  --header-bg: #022434;
+  --border-color: #094D6E;
+  --text-primary: #FFFFFF;
+  --text-secondary: #B8C1C6;
+  --table-header: #022B3D;
+}
+  </style>
+</head>
+
+<body>
+  
+  <!-- Top Bar -->
+  <div class="top-bar" id="topBar" style="display: none;">
+    
+    
+    <!-- Add this toggle button in your navbar -->
+    <div class="theme-toggle">
+      <button id="themeToggleBtn" class="toggle-btn">
+        <span class="toggle-text">Dark</span>
+      </button>
+    </div>
+    <div class="nav-logo">
+                    <a href="#">
+                        <img src="https://sambhavfoundation.org/wp-content/uploads/2023/10/SMF_LOGO-01.png" class="logo"
+                            alt="Sambhav Foundation Logo" />
+                    </a>
+    </div>
+    <!-- From Uiverse.io by vinodjangid07 --> 
+<button class="Btn" id="logoutBtn">
+  
+  <div class="sign"><svg viewBox="0 0 512 512"><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path></svg></div>
+  
+  <div class="text">Logout</div>
+</button>
+
+
+
+  </div>
+  
+
+  <!-- Main Container -->
+  <div class="container">
+    <!-- Login Panel -->
+    <div class="panel login-panel" id="loginPanel">
+      <h2 style="font-weight: 800;text-align: center;">Login</h2>
+      <h5 style="font-weight: 400;margin-bottom: 1rem; margin-top: 0 ; align-items: center; text-align: center;">Authenticate Yourself as Admin</h5>
+      <form class="login-form" id="loginForm">
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="Enter your email" required />
+        </div>
+        <div class="form-group" style="position: relative; margin-bottom: 20px;">
+          <label for="password" style="display: block; margin-bottom: 5px;">Password</label>
+          <input 
+            type="password" 
+            id="password" 
+            placeholder="Enter your password" 
+            required 
+            style="width: 100%; padding: 10px 40px 10px 10px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;"
+          />
+          <span 
+            class="toggle-password" 
+            onclick="togglePassword()"
+            style="position: absolute; top: 50%; right: 10px; transform: translateY(calc(-50% + 14px)); cursor: pointer; color: #666;"
+          >
+            <i class="fas fa-eye"></i>
+          </span>
+        </div>
+        <div class="form-group remember-me" style="display:flex;">
+  <label for="rememberMe" class="item">
+    <input type="checkbox" id="rememberMe" style="width: auto;" class="hidden"/>
+    <label for="rememberMe" class="cbx">      
+      <svg width="14px" height="12px" viewBox="0 0 14 12">
+        <polyline points="1 7.6 5 11 13 1"></polyline>
+      </svg>
+    </label>
+    <label for="rememberMe" class="cbx-lbl">Remember</label>
+  </label>
+</div>
+        <button class="toggle-btn" type="submit">Login</button>
+        <button class="toggle-btn second" onclick="window.location.href='../index.html'">Back</button>
+        <p id="loginError" class="error"></p>
+      </form>
+    </div>
+
+
+    <!-- Database Manager Panel -->
+    <main class="top-main" id="maintop" style="display: none;">
+    <h1>Database</h1>
+      <a href="../index.html"
+        class="primary"
+        onmouseover="this.style.backgroundColor='#13AA52'" onmouseout="this.style.backgroundColor='#0E803F'">
+        Back To Home
+      </a>
+      <a href="../gallery/index.html"
+        class="primary"
+        onmouseover="this.style.backgroundColor='#13AA52'" onmouseout="this.style.backgroundColor='#0E803F'">
+        Gallery
+      </a>
+      <a href="../dataAnalyst.html"
+        class="primary"
+        onmouseover="this.style.backgroundColor='#13AA52'" onmouseout="this.style.backgroundColor='#0E803F'">
+        ADA Page
+      </a>
+      </main>
+      
+    <div class="panel db-panel" id="adminPanel" style="display: none;">
+      
+      
+      <h2 style="margin-bottom:10px;">Quick Links</h2>
+      <div class="col"
+        style="display:flex;flex-direction:flex-start; gap: 1rem; flex-wrap: wrap; justify-content:space-between;">
+        <div class="controls">
+          <button class="toggle-btn" id="uploadBtn">Upload</button>
+          <button class="toggle-btn" id="addBtn">Add Data</button>
+          <button class="toggle-btn" id="refreshBtn">Refresh Data</button>
+        </div>
+      </div>
+      <hr>
+
+      <!-- Expandable Message Table (inserted above #dbContent) -->
+      <div style="display:flex;align-items:center; justify-content:space-between; gap:1rem;">
+      <h3 style="margin-bottom:10px;margin-top:1rem;">Messages</h3>
+      <button id="toggleTableBtn"class="toggle-btn second">Show</button>
+      </div>
+      <div id="messageTableContainer" style="margin: 15px 0;">
+        <div id="messageTableWrapper" class="msg-table" style="display: none; overflow:scroll;">
+          <table id="messageTable">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Message</th>
+                <th>Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Message rows will be inserted here by JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <!-- HTML for Registration Table & Toggle Button -->
+      <div style="display:flex;align-items:center; justify-content:space-between; gap:1rem;">
+       
+       <h3 style="margin-bottom:10px;">Interested Students</h3>
+       <button onclick="toggleRegistrationTable()" class="toggle-btn second">Show</button>
+      </div>
+    <div style="margin: 15px 0;">
+     <div id="registrationTableWrapper" class="msg-table" style="display: none; overflow: scroll;">
+        <table id="registrationTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>Intrested In</th>
+                    <th>Timestamp</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Registration rows will be inserted here by JavaScript -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+      <!-- Database as Table -->
+      <div style="display:flex;align-items:center; justify-content:space-between; gap:1rem;">
+  
+      <h3 style="margin-bottom:10px;">Photos Gallery</h3>
+      
+      <button id="masterTable" style="margin-bottom: 1rem;"class="toggle-btn second">Show</button>
+      </div>
+      <div id="dbEasy" style="display: none; overflow:scroll;">
+        <table class="db-table">
+          <thead>
+            <tr>
+              <th>Serial</th>
+              <th>ADA</th>
+              <th>EV</th>
+              <th>CRM</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="nodesBody"></tbody>
+        </table>
+      </div>
+      <hr>
+
+      <!-- Database -->
+      <h2 style="margin-bottom:10px;margin-top:1rem;">Database</h2>
+      <div id="dbContent">
+        <!-- Database nodes will be rendered here -->
+      </div>
+    </div>
+  </div>
+ 
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+  <script>
+    // Firebase configuration (update with your credentials)
+    const firebaseConfig = {
+      apiKey: "AIzaSyB-5o2DI_pYJHT8HpXq7XJ535SJw9v-1Xc",
+      authDomain: "sambhav-22391.firebaseapp.com",
+      projectId: "sambhav-22391",
+      storageBucket: "sambhav-22391.firebasestorage.app",
+      messagingSenderId: "875613491239",
+      appId: "1:875613491239:web:24e65df29c7c6cdb3afe02",
+      measurementId: "G-N3QJNQ5J4R"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const database = firebase.database();
+
+    // UI Elements
+    const loginPanel = document.getElementById('loginPanel');
+    const adminPanel = document.getElementById('adminPanel');
+    const topBar = document.getElementById('topBar');
+    const loginForm = document.getElementById('loginForm');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const refreshBtn = document.getElementById('refreshBtn');
+    const loginError = document.getElementById('loginError');
+    const dbContent = document.getElementById('dbContent');
+    const dbEasy = document.getElementById('dbEasy');
+    const addBtn = document.getElementById('addBtn');
+    const uploadBtn = document.getElementById('uploadBtn');
+    const tomain = document.getElementById('maintop');
+    
+
+    loginForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const rememberMe = document.getElementById('rememberMe').checked; // Check if "Remember Me" is checked
+
+      if (!email || !password) {
+        loginError.textContent = "Both email and password are required.";
+        return;
+      }
+
+      // Set session persistence based on "Remember Me"
+      const persistenceType = rememberMe
+        ? firebase.auth.Auth.Persistence.LOCAL  // Stays logged in even after closing browser
+        : firebase.auth.Auth.Persistence.SESSION; // Logs out when browser is closed
+
+      auth.setPersistence(persistenceType)
+        .then(() => auth.signInWithEmailAndPassword(email, password))
+        .then(() => {
+          loginError.textContent = "";
+          loginPanel.style.display = 'none';
+          adminPanel.style.display = 'block';
+          topBar.style.display = 'flex';
+          loadDatabase();
+        })
+        .catch((error) => {
+          loginError.textContent = error.message;
+        });
+    });
+
+    // Automatically check if user is already logged in
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        loginPanel.style.display = 'none';
+        adminPanel.style.display = 'block';
+        topBar.style.display = 'flex';
+        loadDatabase();
+      }
+    });
+
+    // Logout functionality
+    logoutBtn.addEventListener('click', function () {
+      auth.signOut().then(() => {
+        adminPanel.style.display = 'none';
+        loginPanel.style.display = 'block';
+        topBar.style.display = 'none';
+      });
+    });
+
+    // Load Database Data
+    function loadDatabase() {
+      dbContent.innerHTML = '<p>Loading data...</p>';
+      database.ref('/').once('value')
+        .then((snapshot) => {
+          const data = snapshot.val();
+          dbContent.innerHTML = '';
+          if (data) {
+            Object.keys(data).forEach(key => {
+              const nodeElem = createNodeElement(key, data[key], '/' + key);
+              dbContent.appendChild(nodeElem);
+            });
+          } else {
+            dbContent.innerHTML = '<p>No data found.</p>';
+          }
+        })
+        .catch((error) => {
+          dbContent.innerHTML = '<p>Error loading data: ' + error.message + '</p>';
+        });
+    }
+
+    // Create node element with improved layout
+    function createNodeElement(key, value, path) {
+      const hasChildren = value && typeof value === 'object' && Object.keys(value).length > 0;
+
+      const card = document.createElement('div');
+      card.className = 'node-card';
+
+      const header = document.createElement('div');
+      header.className = 'node-header';
+
+      const titleDiv = document.createElement('div');
+      titleDiv.className = 'node-title';
+
+      const toggleIcon = document.createElement('span');
+      toggleIcon.className = 'toggle-icon';
+      toggleIcon.textContent = hasChildren ? '+' : '';
+      titleDiv.appendChild(toggleIcon);
+
+      const titleText = document.createElement('span');
+      titleText.textContent = key;
+      titleDiv.appendChild(titleText);
+
+      header.appendChild(titleDiv);
+
+      const deleteBtn = document.createElement('button');
+      deleteBtn.className = 'node-delete-btn';
+      deleteBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
+      deleteBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (confirm('Are you sure you want to delete this node?')) {
+          deleteNode(path);
+        }
+      });
+      header.appendChild(deleteBtn);
+
+      header.addEventListener('click', function () {
+        if (body.style.display === 'none') {
+          body.style.display = 'block';
+          toggleIcon.textContent = '-';
+        } else {
+          body.style.display = 'none';
+          toggleIcon.textContent = '+';
+        }
+      });
+
+      card.appendChild(header);
+
+      const body = document.createElement('div');
+      body.className = 'node-body';
+      body.style.display = 'none';
+
+      if (!hasChildren) {
+        const pre = document.createElement('pre');
+        pre.textContent = JSON.stringify(value, null, 2);
+        body.appendChild(pre);
+      }
+
+      if (hasChildren) {
+        const childContainer = document.createElement('div');
+        childContainer.className = 'child-container';
+        Object.keys(value).forEach(childKey => {
+          const childPath = path + '/' + childKey;
+          const childElem = createNodeElement(childKey, value[childKey], childPath);
+          childContainer.appendChild(childElem);
+        });
+        body.appendChild(childContainer);
+      }
+
+      card.appendChild(body);
+      return card;
+    }
+
+    // Delete node from Firebase
+    function deleteNode(path) {
+      database.ref(path).remove()
+        .then(() => {
+          alert('Node deleted successfully.');
+          loadDatabase();
+        })
+        .catch((error) => {
+          alert('Error deleting node: ' + error.message);
+        });
+    }
+
+    // Refresh data
+    refreshBtn.addEventListener('click', loadDatabase);
+
+    //Add Data
+    addBtn.addEventListener('click', () => {
+      window.location.href = 'publish/index.html';
+    });
+
+    //Upload Image 
+    uploadBtn.addEventListener('click', () => {
+      window.location.href = 'index.html';
+    });
+
+    // Auth state listener
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        loginPanel.style.display = 'none';
+        adminPanel.style.display = 'block';
+        topBar.style.display = 'flex';
+        tomain.style.display = 'block';        
+        loadDatabase();
+      } else {
+        adminPanel.style.display = 'none';
+        loginPanel.style.display = 'block';
+        topBar.style.display = 'none';
+        tomain.style.display = 'none';
+      }
+    });
+
+    // Toggle the expandable table
+    document.getElementById('toggleTableBtn').addEventListener('click', function () {
+      var tableWrapper = document.getElementById('messageTableWrapper');
+      if (tableWrapper.style.display === 'none' || tableWrapper.style.display === '') {
+        tableWrapper.style.display = 'block';
+        this.innerText = 'Hide';
+      } else {
+        tableWrapper.style.display = 'none';
+        this.innerText = 'Show';
+      }
+    });
+    document.getElementById('masterTable').addEventListener('click', function () {
+      var dbEasy = document.getElementById('dbEasy'); // Changed to correct ID
+      if (dbEasy.style.display === 'none' || dbEasy.style.display === '') {
+        dbEasy.style.display = 'block';
+        this.innerText = 'Hide';
+      } else {
+        dbEasy.style.display = 'none';
+        this.innerText = 'Show';
+      }
+    });
+
+
+    // Function to populate the table with message data
+function populateMessageTable(messageNodes) {
+  const tbody = document.getElementById('messageTable').querySelector('tbody');
+  tbody.innerHTML = ''; // Clear previous rows
+
+  messageNodes.forEach((node) => {
+    const date = new Date(node.timestamp);
+
+    // Extract components with IST timezone
+    const time = date.toLocaleTimeString('en-US', {
+      timeZone: 'Asia/Kolkata',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false
+    });
+
+    const weekday = date.toLocaleDateString('en-US', {
+      timeZone: 'Asia/Kolkata',
+      weekday: 'long'
+    });
+
+    const datePart = date.toLocaleDateString('en-GB', {
+      timeZone: 'Asia/Kolkata',
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric'
+    });
+
+    const formattedTimestamp = `${time}, ${weekday}, ${datePart}`;
+
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${node.name}</td>
+      <td>${node.email}</td>
+      <td>${node.message}</td>
+      <td>${formattedTimestamp}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+    // Fetch messages from Firebase Realtime Database
+    function fetchMessages() {
+      var messagesRef = firebase.database().ref('messages');
+      messagesRef.on('value', function (snapshot) {
+        var messageNodes = [];
+        snapshot.forEach(function (childSnapshot) {
+          var data = childSnapshot.val();
+          //console.log("Fetched data:", data); // Inspect the data structure in the console
+
+          messageNodes.push({
+            message: data.message || 'N/A',
+            // Use data.name as the sender; if not available, fallback to data.email
+            name: data.name || data.email || 'N/A',
+            timestamp: data.timestamp || 'N/A',
+            // If "state" doesn't exist in your data, it will default to 'N/A'
+            email: data.email || 'N/A'
+          });
+        });
+        populateMessageTable(messageNodes);
+      }, function (error) {
+        console.error("Error fetching messages:", error);
+      });
+    }
+
+    // Fetch messages on page load
+    fetchMessages();
+
+
+    // Firebase reference
+    const imagesRef = database.ref('images');
+
+    // Real-time listener for images data
+    imagesRef.on('value', (snapshot) => {
+      const data = snapshot.val() || {
+        colorPop: {},
+        Portrait: {},
+        greyscale: {}
+      };
+      renderTable(data);
+    });
+
+    function renderTable(imagesData) {
+      const tbody = document.getElementById('nodesBody');
+      tbody.innerHTML = '';
+
+      // Get all unique keys across categories
+      const allKeys = new Set();
+      Object.values(imagesData).forEach(category => {
+        Object.keys(category).forEach(key => allKeys.add(key));
+      });
+
+      let serial = 1;
+
+      // Create rows for each unique key
+      allKeys.forEach(key => {
+        const row = document.createElement('tr');
+
+        // Key column
+        row.innerHTML = `<td>${serial++}</td>`;
+
+        // Category columns
+        ['ADA', 'EV', 'CRM'].forEach(category => {
+          const item = imagesData[category]?.[key];
+          row.innerHTML += `
+        <td>
+          ${item ? `
+            <div class="editable">
+              <input type="text" class="input-field title" 
+                value="${item.title || ''}" 
+                data-category="${category}" 
+                data-key="${key}">
+              <input type="text" class="input-field url" 
+                value="${item.url || ''}" 
+                data-category="${category}" 
+                data-key="${key}">
+            </div>
+          ` : '-'}
+        </td>
+      `;
+        });
+
+        // Delete button
+        row.innerHTML += `
+      <td>
+        <button class="action-btn delete-btn" 
+          data-key="${key}">Delete</button>
+      </td>
+    `;
+
+        tbody.appendChild(row);
+      });
+    }
+
+    // Debounce function for input events
+    function debounce(func, wait) {
+      let timeout;
+      return (...args) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), wait);
+      };
+    }
+
+    // Handle field updates with debounce
+    document.addEventListener('input', debounce((e) => {
+      if (e.target.classList.contains('input-field')) {
+        const { category, key } = e.target.dataset;
+        const field = e.target.classList.contains('title') ? 'title' : 'url';
+        const value = e.target.value.trim();
+
+        if (value) {
+          database.ref(`images/${category}/${key}/${field}`)
+            .set(value)
+            .catch(error => console.error('Update failed:', error));
+        }
+      }
+    }, 300));
+
+    // Handle deletions
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('delete-btn')) {
+        const key = e.target.dataset.key;
+        if (confirm(`Delete entry ${key} from all categories?`)) {
+          // Remove from all categories
+          Promise.all([
+            database.ref(`images/colorPop/${key}`).remove(),
+            database.ref(`images/Portrait/${key}`).remove(),
+            database.ref(`images/greyscale/${key}`).remove()
+          ]).catch(error => console.error('Delete failed:', error));
+        }
+      }
+    });
+    document.addEventListener('DOMContentLoaded', () => {
+      const themeToggle = document.getElementById('themeToggleBtn');
+      const savedTheme = localStorage.getItem('theme') || 'light';
+
+      document.body.setAttribute('data-theme', savedTheme);
+      updateToggleText(savedTheme);
+
+      themeToggle.addEventListener('click', () => {
+        const currentTheme = document.body.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+        document.body.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateToggleText(newTheme);
+      });
+
+      function updateToggleText(theme) {
+        themeToggle.querySelector('.toggle-text').textContent =
+          theme === 'light' ? 'Dark' : 'Light';
+      }
+    });
+
+
+    function togglePassword() {
+    const passwordField = document.getElementById("password");
+    const toggleIcon = document.querySelector(".toggle-password i");
+
+    if (passwordField.type === "password") {
+      passwordField.type = "text";
+      toggleIcon.classList.remove("fa-eye");
+      toggleIcon.classList.add("fa-eye-slash");
+    } else {
+      passwordField.type = "password";
+      toggleIcon.classList.remove("fa-eye-slash");
+      toggleIcon.classList.add("fa-eye");
+    }
+  }
+  
+  function toggleRegistrationTable() {
+    const wrapper = document.getElementById('registrationTableWrapper');
+    wrapper.style.display = wrapper.style.display === 'none' ? 'block' : 'none';
+    
+    // Update button text
+  toggleBtn.textContent = isHidden ? 'Show' : 'Hide';
+    
+}
+
+function populateRegistrationTable(registrationNodes) {
+    const tbody = document.getElementById('registrationTable').querySelector('tbody');
+    tbody.innerHTML = ''; // Clear previous rows
+    
+
+    registrationNodes.forEach((node) => {
+        const date = new Date(node.timestamp);
+        
+        // Reuse your existing timestamp formatting
+        const time = date.toLocaleTimeString('en-US', {
+            timeZone: 'Asia/Kolkata',
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false
+        });
+
+        const weekday = date.toLocaleDateString('en-US', {
+            timeZone: 'Asia/Kolkata',
+            weekday: 'long'
+        });
+
+        const datePart = date.toLocaleDateString('en-GB', {
+            timeZone: 'Asia/Kolkata',
+            day: '2-digit',
+            month: 'long',
+            year: 'numeric'
+        });
+
+        const formattedTimestamp = `${time}, ${weekday}, ${datePart}`;
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${node.name || 'N/A'}</td>
+            <td>${node.email || 'N/A'}</td>
+            <td>${node.mobile || 'N/A'}</td>
+            <td>${node.course || 'N/A'}</td>
+            <td>${formattedTimestamp}</td>
+        `;
+        tbody.appendChild(tr);
+    });
+}
+
+function fetchRegistrations() {
+    const registrationsRef = firebase.database().ref('registrations');
+    registrationsRef.on('value', (snapshot) => {
+        const registrationNodes = [];
+        snapshot.forEach((childSnapshot) => {
+            const data = childSnapshot.val();
+            registrationNodes.push({
+                name: data.name || 'N/A',
+                email: data.email || 'N/A',
+                mobile: data.mobile || 'N/A',
+                course: data.course || 'N/A',
+                timestamp: data.timestamp || 'N/A'
+            });
+        });
+        populateRegistrationTable(registrationNodes);
+    }, (error) => {
+        console.error("Error fetching registrations:", error);
+    });
+}
+
+// Call on page load
+fetchRegistrations();
+  </script>
+</body>
+
+</html>
