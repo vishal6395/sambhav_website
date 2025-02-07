@@ -213,8 +213,8 @@ document.querySelectorAll('.expand-trigger').forEach(trigger => {
         const card = trigger.closest('.sponsor-card');
         const chevron = trigger.querySelector('.fa-chevron-down');
         card.classList.toggle('active');
-        chevron.style.transform = card.classList.contains('active') 
-            ? 'rotate(180deg)' 
+        chevron.style.transform = card.classList.contains('active')
+            ? 'rotate(180deg)'
             : 'rotate(0deg)';
     });
 });

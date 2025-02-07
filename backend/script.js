@@ -72,7 +72,7 @@ document.getElementById('uploadForm').addEventListener('submit', async (event) =
                     <img src="https://img.icons8.com/fluency-systems-regular/50/copy.png" alt="Copy Icon" class="copy-icon" onclick="copyToClipboard('${data.secure_url}')">
                 </div>
             `;
-            
+
         } else {
             document.getElementById('result').textContent = 'Failed to upload image.';
         }

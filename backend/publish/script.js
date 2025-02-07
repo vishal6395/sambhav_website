@@ -16,25 +16,25 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
 // Function to Save Image URL to Firebase Realtime Database
-window.saveImageURL = function() {
-    const imageURL = document.getElementById('imageURL').value;
-    const category = document.getElementById('categorySelect').value;
-    const imageTitle = document.getElementById('imageTitle').value;
+window.saveImageURL = function () {
+  const imageURL = document.getElementById('imageURL').value;
+  const category = document.getElementById('categorySelect').value;
+  const imageTitle = document.getElementById('imageTitle').value;
 
-    if (!imageURL || !imageTitle) {
-        alert("Please enter a valid image URL and title.");
-        return;
-    }
+  if (!imageURL || !imageTitle) {
+    alert("Please enter a valid image URL and title.");
+    return;
+  }
 
-    const dbRef = ref(database, 'images/' + category);
-        push(dbRef, {
-        url: imageURL,
-        title: imageTitle
-      }).then(() => {
-        console.log("Data saved successfully");
-        document.getElementById('status').innerText = "Image URL uploaded successfully!";
-      }).catch((error) => {
-        console.error("Error saving data: ", error);
-        document.getElementById('status').innerText = "Error saving image.";
-      });
+  const dbRef = ref(database, 'images/' + category);
+  push(dbRef, {
+    url: imageURL,
+    title: imageTitle
+  }).then(() => {
+    console.log("Data saved successfully");
+    document.getElementById('status').innerText = "Image URL uploaded successfully!";
+  }).catch((error) => {
+    console.error("Error saving data: ", error);
+    document.getElementById('status').innerText = "Error saving image.";
+  });
 }

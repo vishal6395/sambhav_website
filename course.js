@@ -18,18 +18,18 @@ const database = getDatabase(app);
 document.addEventListener('DOMContentLoaded', () => {
     // Theme toggle
     document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
-    
+
     // Course buttons
     document.getElementById('excelTipsBtn').addEventListener('click', showExcelTips);
     document.getElementById('biExamplesBtn').addEventListener('click', showBIExamples);
     document.getElementById('careerPathsBtn').addEventListener('click', showCareerPaths);
-    
+
     // Modal button
     document.getElementById('interestBtn').addEventListener('click', openModal);
-    
+
     // Close modal
     document.getElementById('closeModal').addEventListener('click', closeModal);
-    
+
     // Form submission
     document.getElementById('interestForm').addEventListener('submit', handleFormSubmit);
 
@@ -40,8 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Unified theme handling
 function toggleTheme() {
-    const newTheme = document.documentElement.getAttribute('data-theme') === 'dark' 
-        ? 'light' 
+    const newTheme = document.documentElement.getAttribute('data-theme') === 'dark'
+        ? 'light'
         : 'dark';
     document.documentElement.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
@@ -94,14 +94,14 @@ function closeModal() {
 function showAlert(message) {
     const alert = document.getElementById('customAlert');
     const content = document.getElementById('alertContent');
-    
+
     // Reset animation
     alert.style.display = 'block';
     void alert.offsetHeight; // Trigger reflow
-    
+
     content.innerHTML = message;
     alert.classList.add('show');
-    
+
     // Clear existing timeout
     if (alert.timeoutId) clearTimeout(alert.timeoutId);
     alert.timeoutId = setTimeout(hideAlert, 5000);
@@ -110,7 +110,7 @@ function showAlert(message) {
 function hideAlert() {
     const alert = document.getElementById('customAlert');
     alert.classList.remove('show');
-    
+
     // Wait for transition before hiding completely
     setTimeout(() => {
         alert.style.display = 'none';
@@ -140,7 +140,7 @@ function showCareerPaths() {
 }
 
 // Window click handler
-window.onclick = function(event) {
+window.onclick = function (event) {
     const modal = document.getElementById('interestModal');
     if (event.target === modal) {
         closeModal();

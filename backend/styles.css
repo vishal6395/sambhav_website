@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-  
-  
+
 /* General Styles */
 body {
     font-family: 'Poppins', sans-serif;
@@ -10,9 +9,9 @@ body {
     padding: 20px;
     display: flex;
     align-items: center;
-    justify-content:center;    
+    justify-content: center;
     height: 100vh;
-    flex-direction:column;
+    flex-direction: column;
 }
 
 h1 {
@@ -112,10 +111,12 @@ h1 {
     from {
         transform: rotate(0deg);
     }
+
     to {
         transform: rotate(360deg);
     }
 }
+
 .next {
     margin-top: 20px;
     text-align: center;
@@ -138,8 +139,10 @@ h1 {
 
 /* Uploaded Image Styles */
 .uploaded-image {
-    max-width: 300px; /* Limit max width */
-    max-height: 300px; /* Limit max height */
+    max-width: 300px;
+    /* Limit max width */
+    max-height: 300px;
+    /* Limit max height */
     margin-top: 20px;
     border: 2px solid #007bff;
     border-radius: 10px;

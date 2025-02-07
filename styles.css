@@ -10,9 +10,11 @@ html {
     --dark: #732C12;
     --light: #FFF4E5;
 }
+
 .logo {
     filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.7));
 }
+
 ::-webkit-scrollbar {
     width: 1px;
 }
@@ -156,7 +158,10 @@ header {
     border-top: 5px solid var(--primary);
     border-radius: 2rem;
 }
-@media (max-width: 768px) { /* Adjust for tablets & mobile screens */
+
+@media (max-width: 768px) {
+
+    /* Adjust for tablets & mobile screens */
     .section {
         padding: 2rem;
     }
@@ -1473,8 +1478,8 @@ header {
 }
 
 /* Facilities and Class Features */
-[data-theme="dark"] .facility-list > div,
-[data-theme="dark"] .class-features > div {
+[data-theme="dark"] .facility-list>div,
+[data-theme="dark"] .class-features>div {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 10px;
@@ -1500,7 +1505,8 @@ header {
     margin: 10px;
     border-radius: 5px;
     text-align: center;
-    width: 180px; /* Adjust width as needed */
+    width: 180px;
+    /* Adjust width as needed */
 }
 
 [data-theme="dark"] .teacher-card i {
@@ -1564,16 +1570,22 @@ header {
     border-color: var(--secondary);
     background: rgba(0, 0, 0, 0.1);
 }
-[data-theme="dark"] .sponsors-title, .card-content p, .timeline-item p{
+
+[data-theme="dark"] .sponsors-title,
+.card-content p,
+.timeline-item p {
     color: var(--text-color);
 }
+
 .sponsor-card {
     background-color: white;
     transition: background-color 0.3s ease;
 }
+
 [data-theme="dark"] .sponsor-card {
     background-color: transparent;
 }
+
 .hamburger span {
     display: block;
     width: 24px;
@@ -1613,6 +1625,7 @@ header {
     list-style: none;
     padding: 0;
 }
+
 .program-list li {
     display: flex;
     align-items: center;
@@ -1621,6 +1634,7 @@ header {
     background: #f8f9fa;
     border-radius: 8px;
 }
+
 .program-list i {
     margin-right: 15px;
     color: #2c3e50;
@@ -1633,7 +1647,8 @@ header {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 15px;
 }
-.facility-list > div {
+
+.facility-list>div {
     display: flex;
     align-items: center;
     padding: 10px;
@@ -1641,6 +1656,7 @@ header {
     border: 1px solid #eee;
     border-radius: 6px;
 }
+
 .facility-list i {
     margin-right: 10px;
     color: #3498db;
@@ -1654,12 +1670,14 @@ header {
     flex-wrap: wrap;
     gap: 20px;
 }
-.class-features > div {
+
+.class-features>div {
     text-align: center;
     padding: 20px;
     flex: 1;
     min-width: 200px;
 }
+
 .class-features i {
     font-size: 2em;
     color: #e74c3c;
@@ -1673,24 +1691,28 @@ header {
     overflow-x: auto;
     padding: 15px 0;
 }
+
 .teacher-card {
     text-align: center;
     min-width: 150px;
     padding: 20px;
     background: #fff;
     border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+
 .teacher-card i {
     font-size: 1.8em;
     color: #27ae60;
     margin-bottom: 10px;
 }
+
 .teacher-name {
     display: block;
     font-weight: 600;
     margin: 5px 0;
 }
+
 .subject {
     font-size: 0.9em;
     color: #7f8c8d;
@@ -1703,6 +1725,7 @@ header {
     text-align: center;
     margin: 20px 0;
 }
+
 .gallery-btn {
     background: #2980b9;
     color: white;
@@ -1716,10 +1739,12 @@ header {
     margin: 0 auto;
     transition: transform 0.3s ease;
 }
+
 .gallery-btn:hover {
     transform: translateY(-2px);
     background: #3498db;
 }
+
 .gallery-btn i {
     font-size: 1.2em;
 }
@@ -1729,6 +1754,7 @@ header {
     .facility-list {
         grid-template-columns: 1fr 1fr;
     }
+
     .teacher-profiles {
         flex-wrap: nowrap;
     }
@@ -1871,15 +1897,16 @@ header {
     .sponsor-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .sponsor-branding {
         flex-direction: column;
     }
-    
+
     .sponsor-logo {
         height: 40px;
     }
 }
+
 .sponsor-logo {
     height: 50px;
 }
@@ -1895,6 +1922,7 @@ header {
     max-height: 400px;
     padding: 1rem;
 }
+
 .expandable.active .fa-chevron-down {
     transform: rotate(180deg);
 }

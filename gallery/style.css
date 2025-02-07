@@ -496,7 +496,6 @@ body {
     }
 }
 
-
 /* Add these dark theme styles */
 :root[data-theme="dark"] {
     --primary: #EC6D38;
