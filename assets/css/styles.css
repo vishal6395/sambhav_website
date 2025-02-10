@@ -235,7 +235,7 @@ header {
 
 /* Background images for hero boxes (replace URLs as needed) */
 .hero-box.ev {
-    background-image: url('https://images.unsplash.com/photo-1710027383363-cbe7cf1c00bf?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-image: url('https://imgs.search.brave.com/UHlFdNaCBvTkuCMQMHBKgPmgAC7J1WLrJ3U8wOMHWh4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTU3/NTgyMDAxL3Bob3Rv/L2VsZWN0cmljLWNh/ci5qcGc_cz02MTJ4/NjEyJnc9MCZrPTIw/JmM9WEtYZEJZenRQ/SVkyUXRNNmVGU01v/eVNDeDJzM19YVTk1/cTJFR3owYnRydz0');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
